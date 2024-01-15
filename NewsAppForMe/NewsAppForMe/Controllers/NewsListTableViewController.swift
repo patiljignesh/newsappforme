@@ -10,23 +10,43 @@ import UIKit
 class NewsListTableViewController: UITableViewController {
 
     private var newsArticleListViewModel: NewsArticleListViewModel!
+    private var userDefaultViewModel = UserDefaultsViewModel()
+    private var languagePref: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLanguagePreference()
         setupRefreshControl()
         setup()
         fetchNewsArticles()
     }
 }
 
-extension NewsListTableViewController {
+extension NewsListTableViewController: UserDefaultsServiceProtocol {
     
+    // MARK: - App Setup
     private func setup(){
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    // MARK: - Table view data source
+    // MARK: - UserDefaults Setup
+    func save(value: String, forKey key: String) {
+        UserDefaults.standard.set(value, forKey: key)
+    }
 
+    func getValue(forKey key: String) -> String? {
+        return UserDefaults.standard.string(forKey: key)
+    }
+    
+    private func setupLanguagePreference() {
+        languagePref = userDefaultViewModel.getString(forKey: "Language")
+        if((languagePref?.isEmpty) != nil){
+            userDefaultViewModel.setLanguagePreference(to: "us")
+        }
+    }
+    
+
+    // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.newsArticleListViewModel == nil ? 0 : self.newsArticleListViewModel.numberOfSections
     }
@@ -47,13 +67,12 @@ extension NewsListTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let articleDetailViewModel = self.newsArticleListViewModel.newsArticleAtIndex(indexPath.row)
-            navigateToDetailViewController(with: articleDetailViewModel)
-            tableView.deselectRow(at: indexPath, animated: true)
+        let articleDetailViewModel = self.newsArticleListViewModel.newsArticleAtIndex(indexPath.row)
+        navigateToDetailViewController(with: articleDetailViewModel)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - Navigation
-
     private func navigateToDetailViewController(with articleViewModel: ArticleDetailViewModel) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil) // Replace "Main" with your storyboard name if different
         if let detailVC = storyboard.instantiateViewController(withIdentifier: "ArticleDetailViewControllerID") as? ArticleDetailViewController {
@@ -69,24 +88,21 @@ extension NewsListTableViewController {
 extension NewsListTableViewController {
 
     private func setupRefreshControl() {
-        // Add Refresh Control to Table View
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refreshNewsData(_:)), for: .valueChanged)
         refreshControl?.attributedTitle = NSAttributedString(string: "Fetching News Articles...")
         tableView.refreshControl = refreshControl
-        print("Fetching News Articles...")
-
     }
     
     @objc private func refreshNewsData(_ sender: Any) {
-        print("Refreshing_News Data")
-        // Fetch News Data
         fetchNewsArticles()
     }
 
     private func fetchNewsArticles() {
-//        let url = URL(string: "https://newsapi.org/v2/top-headlines?apiKey=1d38baf2f91547a28752a9a255b59779&country=\(country ?? "us")")!
-        let url = URL(string: "https://newsapi.org/v2/top-headlines?apiKey=1d38baf2f91547a28752a9a255b59779&country=za")!
+        
+        languagePref = userDefaultViewModel.getString(forKey: "Language")
+
+        let url = URL(string: "https://newsapi.org/v2/top-headlines?apiKey=1d38baf2f91547a28752a9a255b59779&country=\(languagePref ?? "us")")!
         Webservices().getArticles(url: url) { newsArticles in
                 DispatchQueue.main.async {
                     if let newsArticles = newsArticles {

@@ -14,7 +14,7 @@ class MyViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         mockUserDefaultsService = MockUserDefaultsService()
-        viewModel = MyViewModel(userDefaultsService: mockUserDefaultsService)
+        viewModel = UserDefaultsViewModel(userDefaultsService: mockUserDefaultsService)
     }
 
     func testSaveString() {

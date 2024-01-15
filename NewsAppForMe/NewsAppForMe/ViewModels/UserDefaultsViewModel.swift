@@ -14,6 +14,10 @@ class UserDefaultsViewModel  {
             self.userDefaultsService = userDefaultsService
         }
 
+        func setLanguagePreference(to language: String) {
+            userDefaultsService.save(value: language, forKey: "Language")
+        }
+    
         func saveString(value: String, forKey key: String) {
             userDefaultsService.save(value: value, forKey: key)
         }
