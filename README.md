@@ -21,6 +21,7 @@
 - [X] User Defaults setup
 - [X] Test Cases
 - [ ] Constants
+- [ ] Documentation
 
 ## How to build
 
