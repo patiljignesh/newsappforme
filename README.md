@@ -22,6 +22,7 @@
 - [X] Test Cases
 - [ ] Constants
 - [ ] Documentation
+- [ ] add .gitignore
 
 ## How to build
 
