@@ -20,6 +20,7 @@
 - [X] Firebase setup
 - [X] User Defaults setup
 - [X] Test Cases
+- [ ] Constants
 
 ## How to build
 
