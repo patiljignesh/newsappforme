@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import UIKit
+
+class NewsArticleListTableViewCell: UITableViewCell {
+    @IBOutlet weak var newsTitleLabel: UILabel!
+    @IBOutlet weak var newsDescriptionLabel: UILabel!
+}
+
+

@@ -9,81 +9,94 @@ import UIKit
 
 class NewsListTableViewController: UITableViewController {
 
+    private var newsArticleListViewModel: NewsArticleListViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        setupRefreshControl()
+        setup()
+        fetchNewsArticles()
     }
+}
 
+extension NewsListTableViewController {
+    
+    private func setup(){
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return self.newsArticleListViewModel == nil ? 0 : self.newsArticleListViewModel.numberOfSections
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.newsArticleListViewModel.numberOfRowsInSection(section)
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsArticleTableViewCell", for: indexPath) as? NewsArticleListTableViewCell else {
+            fatalError("NewArticleTableViewCell not found")
+        }
+        
+        let newsArticleViewModel = self.newsArticleListViewModel.newsArticleAtIndex(indexPath.row)
+        cell.newsTitleLabel.text = newsArticleViewModel.title
+        cell.newsDescriptionLabel.text = newsArticleViewModel.description
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let articleDetailViewModel = self.newsArticleListViewModel.newsArticleAtIndex(indexPath.row)
+            navigateToDetailViewController(with: articleDetailViewModel)
+            tableView.deselectRow(at: indexPath, animated: true)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func navigateToDetailViewController(with articleViewModel: ArticleDetailViewModel) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil) // Replace "Main" with your storyboard name if different
+        if let detailVC = storyboard.instantiateViewController(withIdentifier: "ArticleDetailViewControllerID") as? ArticleDetailViewController {
+            detailVC.articleViewModel = articleViewModel
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
-    */
 
 }
+
+// MARK: - Refresh
+
+extension NewsListTableViewController {
+
+    private func setupRefreshControl() {
+        // Add Refresh Control to Table View
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refreshNewsData(_:)), for: .valueChanged)
+        refreshControl?.attributedTitle = NSAttributedString(string: "Fetching News Articles...")
+        tableView.refreshControl = refreshControl
+        print("Fetching News Articles...")
+
+    }
+    
+    @objc private func refreshNewsData(_ sender: Any) {
+        print("Refreshing_News Data")
+        // Fetch News Data
+        fetchNewsArticles()
+    }
+
+    private func fetchNewsArticles() {
+//        let url = URL(string: "https://newsapi.org/v2/top-headlines?apiKey=1d38baf2f91547a28752a9a255b59779&country=\(country ?? "us")")!
+        let url = URL(string: "https://newsapi.org/v2/top-headlines?apiKey=1d38baf2f91547a28752a9a255b59779&country=za")!
+        Webservices().getArticles(url: url) { newsArticles in
+                DispatchQueue.main.async {
+                    if let newsArticles = newsArticles {
+                        self.newsArticleListViewModel = NewsArticleListViewModel(newsArticle: newsArticles)
+                        self.tableView.reloadData()
+                    }
+                    self.refreshControl?.endRefreshing()
+                }
+        }
+    }
+
+}
+

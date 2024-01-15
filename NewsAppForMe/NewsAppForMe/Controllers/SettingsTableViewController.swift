@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  SettingsTableViewController.swift
 //  NewsAppForMe
 //
 //  Created by Jigneshkumar Patil on 2024/01/15.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
