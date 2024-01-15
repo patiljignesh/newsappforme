@@ -76,6 +76,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01E0C9742B54BE1C002195E7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		01E0C9752B54BE2D002195E7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		01E0C9762B54BE33002195E7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		01E0C9772B54BE3C002195E7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		01E0C9782B54BE41002195E7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		01E0C9792B54BE5C002195E7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		01E0C97A2B54BE67002195E7 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		01E0C97B2B54BE71002195E7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01E0C97C2B54BE7F002195E7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		01E3A02D2B4471A7008A0322 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +162,15 @@
 		01E3A0382B4471A7008A0322 /* NewsAppForMe */ = {
 			isa = PBXGroup;
 			children = (
+				01E0C97C2B54BE7F002195E7 /* Controllers */,
+				01E0C97B2B54BE71002195E7 /* Supporting Files */,
+				01E0C97A2B54BE67002195E7 /* Storyboards */,
+				01E0C9792B54BE5C002195E7 /* Resources */,
+				01E0C9782B54BE41002195E7 /* Utils */,
+				01E0C9772B54BE3C002195E7 /* Services */,
+				01E0C9762B54BE33002195E7 /* ViewModels */,
+				01E0C9752B54BE2D002195E7 /* Views */,
+				01E0C9742B54BE1C002195E7 /* Models */,
 				01E3A0392B4471A7008A0322 /* AppDelegate.swift */,
 				01E3A03B2B4471A7008A0322 /* SceneDelegate.swift */,
 				01E3A03D2B4471A7008A0322 /* ViewController.swift */,
