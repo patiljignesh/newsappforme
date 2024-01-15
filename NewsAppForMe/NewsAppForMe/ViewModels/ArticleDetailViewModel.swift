@@ -60,7 +60,9 @@ extension ArticleDetailViewModel {
 // MARK: - Save to Firebase
 extension ArticleDetailViewModel {
     func addToFavorites(completion: @escaping (Error?) -> Void) {
-       
+        FirebaseManager.shared.saveArticle(self) { error in
+            completion(error)
+        }
     }
 }
 
