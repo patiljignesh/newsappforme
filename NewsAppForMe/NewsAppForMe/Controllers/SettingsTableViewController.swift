@@ -9,21 +9,29 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
+    
+    @IBOutlet weak var usLangSwitch: UISwitch!
+    @IBOutlet weak var caLangSwitch: UISwitch!
+    @IBOutlet weak var darkModeEnableSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupSwitches()
         // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupSwitches() {
+        usLangSwitch.addTarget(self, action: #selector(switchChanged(_:)), for: .valueChanged)
+        caLangSwitch.addTarget(self, action: #selector(switchChanged(_:)), for: .valueChanged)
     }
-    */
+
+    @objc func switchChanged(_ sender: UISwitch) {
+        if sender == usLangSwitch {
+            caLangSwitch.setOn(!usLangSwitch.isOn, animated: true)
+        } else if sender == caLangSwitch {
+            usLangSwitch.setOn(!caLangSwitch.isOn, animated: true)
+        }
+    }
 
 }
