@@ -35,7 +35,7 @@
   `git clone https://github.com/patiljignesh/newsappforme.git` 
 - For branch selection use:
   `--single-branch --branch [branchname]` after `clone`
-- After completion, open `dime.xcodeproj` using Xcode.
+- After completion, open `NewsAppForMe.xcodeproj` using Xcode.
 - Please let all dependecies update automatically but we would recommend to run
   `File > Packages > Resolve Package Versions` to ensure, everything is updated.
 
