@@ -101,8 +101,11 @@ extension NewsListTableViewController {
     private func fetchNewsArticles() {
         
         languagePref = userDefaultViewModel.getString(forKey: "Language")
-
-        let url = URL(string: "https://newsapi.org/v2/top-headlines?apiKey=1d38baf2f91547a28752a9a255b59779&country=\(languagePref ?? "us")")!
+        let newsURL = Constants.API.baseURL
+        let apiKey = Constants.API.apiKey
+        
+        let url = URL(string: "\(newsURL)?apiKey=\(apiKey)&country=\(languagePref ?? "us")")!
+//        let url = URL(string: "https://newsapi.org/v2/top-headlines?apiKey=1d38baf2f91547a28752a9a255b59779&country=\(languagePref ?? "us")")!
         Webservices().getArticles(url: url) { newsArticles in
                 DispatchQueue.main.async {
                     if let newsArticles = newsArticles {

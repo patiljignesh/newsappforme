@@ -30,6 +30,7 @@
 		01E0C9A82B54E40A002195E7 /* UserDefaultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E0C9A72B54E40A002195E7 /* UserDefaultsViewModel.swift */; };
 		01E0C9AA2B54E476002195E7 /* MockUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E0C9A92B54E476002195E7 /* MockUserDefaultsService.swift */; };
 		01E0C9AC2B54E4B3002195E7 /* UserDefaultsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E0C9AB2B54E4B3002195E7 /* UserDefaultsViewModelTests.swift */; };
+		01E0C9AE2B54F675002195E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E0C9AD2B54F675002195E7 /* Constants.swift */; };
 		01E3A03A2B4471A7008A0322 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3A0392B4471A7008A0322 /* AppDelegate.swift */; };
 		01E3A03C2B4471A7008A0322 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E3A03B2B4471A7008A0322 /* SceneDelegate.swift */; };
 		01E3A0412B4471A7008A0322 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E3A03F2B4471A7008A0322 /* Main.storyboard */; };
@@ -74,6 +75,7 @@
 		01E0C9A72B54E40A002195E7 /* UserDefaultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsViewModel.swift; sourceTree = "<group>"; };
 		01E0C9A92B54E476002195E7 /* MockUserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaultsService.swift; sourceTree = "<group>"; };
 		01E0C9AB2B54E4B3002195E7 /* UserDefaultsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsViewModelTests.swift; sourceTree = "<group>"; };
+		01E0C9AD2B54F675002195E7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		01E3A0362B4471A7008A0322 /* NewsAppForMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsAppForMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E3A0392B4471A7008A0322 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01E3A03B2B4471A7008A0322 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				01E0C9A12B54DC6A002195E7 /* Utils.swift */,
 				01E0C9A32B54E340002195E7 /* UserDefaultsServiceProtocol.swift */,
 				01E0C9A52B54E35B002195E7 /* UserDefaultsService.swift */,
+				01E0C9AD2B54F675002195E7 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				01E0C98B2B54C738002195E7 /* NewsArticleListTableViewCell.swift in Sources */,
 				01E0C97E2B54C3E2002195E7 /* NewsListTableViewController.swift in Sources */,
 				01E0C9A02B54DC46002195E7 /* FirebaseManager.swift in Sources */,
+				01E0C9AE2B54F675002195E7 /* Constants.swift in Sources */,
 				01E0C9862B54C5C6002195E7 /* NewsArticles.swift in Sources */,
 				01E3A03C2B4471A7008A0322 /* SceneDelegate.swift in Sources */,
 				01E0C9A62B54E35B002195E7 /* UserDefaultsService.swift in Sources */,
